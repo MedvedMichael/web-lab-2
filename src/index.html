@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/styles.css"/>
+</head>
+
+<body>
+    <script type="text/html" id="preview-tpl">
+        <ul class="list-group">
+            <#for(let i in notes){#>
+                <li class="list-group-item preview-list-item">
+                    <h2>
+                        <#notes[i].title#>
+                    </h2>
+                </li>
+            <#}#>
+            <li class="list-group-item preview-list-item">
+                <h2>Add new note</h2>
+            </li>
+        </ul>
+    </script>
+
+    <div id="preview-list">
+
+    </div>
+    
+    <div class="header flex">
+        <h1 class="display-3 header-title">
+            Simple Notes
+        </h1>
+    </div>
+    <div class="main d-flex">
+        <div id="main-list">
+
+        </div>
+        <textarea class="form-control main-textarea" rows="15"></textarea>
+    </div>
+    <script src="./js/template-engine.js"></script>
+    <script src="./js/import-html.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+
+.header {
+    display: flex;
+    padding-bottom: 2rem;
+}
+
+.header-title {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}
+
+.preview-list-item {
+    width: 30rem;
+}
+
+.preview-list-item:hover {
+    background-color:#01566b;
+}
+
+.main-textarea {
+    font-size: xx-large;
+}
