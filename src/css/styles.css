@@ -4,6 +4,14 @@
     padding-bottom: 2rem;
 }
 
+.main {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 .header-title {
     display: block;
     margin-left: auto;
@@ -12,13 +20,33 @@
 }
 
 .preview-list-item {
-    width: 30rem;
+    width: 20rem;
+}
+
+.input-form {
+    flex-grow: 1;
 }
 
 .preview-list-item:hover {
     background-color:#01566b;
 }
 
+.selected-item {
+    background-color:#01566b;
+}
+
 .main-textarea {
     font-size: xx-large;
+    flex-grow: 18;
+}
+
+#title-input {
+    font-size: xx-large;
+    flex-grow: 1;
+    
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
 }

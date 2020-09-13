@@ -1,6 +1,6 @@
 
 const reg = /<#([^%>]+)?#>/g
-      regForJSCode = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
+      regForJSCode = /(^( )?(var|const|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
 
 
 
@@ -32,7 +32,7 @@ const templateEngine = (text, data) => {
     add(text.substr(currentPosition, text.length - currentPosition));
     code += 'return collector.join("");';
 
-    console.log(code)
+    // console.log(code)
     
     return new Function(name, code.replace(/[\r\t\n]/g, '')).apply(this, value);
 }

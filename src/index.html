@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/styles.css"/>
 </head>
 
@@ -13,14 +13,24 @@
     <script type="text/html" id="preview-tpl">
         <ul class="list-group">
             <#for(let i in notes){#>
-                <li class="list-group-item preview-list-item">
+                <#const note = notes[i];#>
+                <li class="list-group-item preview-list-item <#(selected!==-1 && i === selected.toString()) ? 'selected-item' : ''#>" 
+                    id="<#notes[i].id#>">
                     <h2>
-                        <#notes[i].title#>
+                        <#note.title.slice(0,15)#>
+                        <#(note.title.length < 15) ? '' : '...'#>
                     </h2>
+                    <h4>
+                        <#note.text.slice(0,17)#>
+                        <#(note.text.length < 17) ? '' : '...'#>
+                    </h4>
+                    
                 </li>
             <#}#>
-            <li class="list-group-item preview-list-item">
-                <h2>Add new note</h2>
+            <li class="list-group-item preview-list-item add-note-button" onclick="addNote()">
+                <h2>
+                    Add note
+                </h2>
             </li>
         </ul>
     </script>
@@ -34,11 +44,14 @@
             Simple Notes
         </h1>
     </div>
-    <div class="main d-flex">
+    <div class="main flex">
         <div id="main-list">
 
         </div>
-        <textarea class="form-control main-textarea" rows="15"></textarea>
+        <div class="input-form">
+            <input class="form-control form-control-lg" type="text" id="title-input" placeholder="Input title">
+            <textarea id="main-textarea" class="form-control main-textarea" placeholder="Write something"></textarea>
+        </div>
     </div>
     <script src="./js/template-engine.js"></script>
     <script src="./js/import-html.js"></script>
