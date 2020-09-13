@@ -7,7 +7,6 @@
 .main {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -20,11 +19,15 @@
 }
 
 .preview-list-item {
-    width: 20rem;
+    flex-grow: 5;
+}
+
+#main-list {
+    flex-grow: 1;
 }
 
 .input-form {
-    flex-grow: 1;
+    flex-grow: 5;
 }
 
 .preview-list-item:hover {

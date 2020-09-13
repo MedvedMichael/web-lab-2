@@ -17,6 +17,7 @@ function handlerForPreviews(item, index, notes) {
             notes[index].title = titleArea.value
         }
         localStorage.setItem('notes', JSON.stringify(notes))
+        
         updatePage({ selected: noteIndex })
     }
 }
@@ -63,8 +64,11 @@ function updatePage(props) {
     console.log(props)
     const text = props.selected !== -1 ? notes[props.selected].text : '',
           title = props.selected !== -1 ? notes[props.selected].title : ''
-    document.getElementById('main-textarea').value = text
-    document.getElementById('title-input').value = title
+
+    const textArea = document.getElementById('main-textarea'),
+          titleArea = document.getElementById('title-input')
+    textArea.value = text
+    titleArea.value = title
     
 }
 
