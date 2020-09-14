@@ -1,9 +1,7 @@
 
 import templateEngine from './template-engine'
-import '../templates/preview-list.html'
-import {getDataFromLocalStorage, parseQuery, generateID, pushToURL} from './helpers'
+import {getDataFromLocalStorage, parseQuery, generateID, pushToURL, saveToLocalStorage} from './helpers'
 import Note from './note'
-import { cosh } from 'core-js/fn/number'
 
 
 const addNote = (notes) => 
@@ -12,14 +10,14 @@ const addNote = (notes) =>
 
 const updatePage = (props) => {
 
-    const notes = props.notes ? props.notes : getDataFromLocalStorage('notes'),
+    const notes = props.notes ? props.notes : getDataFromLocalStorage('notes').map(item => new Note({...item._data, selected: false})),
           {search} = window.location,
           query = parseQuery(search),
           previewListTemplate = document.getElementById('preview-tpl'),
           previewItems = document.getElementsByClassName('preview-list-item')
 
 
-    
+    console.log(notes[0])
     const currentNote = query.id ? notes.find(item => item.getID() && item.getID() === query.id) : null
     if (currentNote) 
         currentNote.setIsSelected(true)
@@ -37,6 +35,7 @@ const updatePage = (props) => {
             
             notes[i].setIsSelected(true)
             pushToURL('','id', notes[i].getID())
+            saveToLocalStorage('notes', notes)
             updatePage({notes})
         }
     }
@@ -47,10 +46,6 @@ const updatePage = (props) => {
         updatePage({ notes:  newNotes})
     })
     
-   
-
-    console.log('KU')
-    console.log(currentNote)
     const text = currentNote ? currentNote.getText() : '',
           title = currentNote ? currentNote.getTitle() : ''
 
@@ -61,7 +56,8 @@ const updatePage = (props) => {
     // if(selected !== -1)
 
     if (currentNote) {
-        
+        textArea.disabled = false
+        titleArea.disabled = false
         titleArea.oninput = () => {
             const {value} = titleArea
             const previewTitle = document.getElementById(`note-title_${currentNote.getID()}`)
@@ -75,7 +71,14 @@ const updatePage = (props) => {
             currentNote.setText(value)
         }
     }
+    else {
+        textArea.disabled = true
+        titleArea.disabled = true
+    }
+    
+    window.addEventListener('close', () => saveToLocalStorage('notes', notes))
 }
+
 
 
 updatePage({})
