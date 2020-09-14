@@ -9,6 +9,14 @@
     flex-direction: row;
     margin-left: 1rem;
     margin-right: 1rem;
+    padding-bottom: 5rem;
+}
+
+.delete-button-group {
+    display: block;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .header-title {
@@ -16,6 +24,11 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+}
+
+.header a {
+    text-decoration: none;
+    color: #ebebeb;
 }
 
 .preview-list-item {

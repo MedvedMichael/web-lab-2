@@ -5,20 +5,20 @@ export default class Note {
         this._data = data
         this._selected = data.selected ? data.selected : false
     }
-    
-    setIsSelected (selected) {
+
+    setIsSelected(selected) {
         this._selected = selected
     }
 
-    isSelected () {
+    isSelected() {
         return this._selected
     }
 
-    getID (){
+    getID() {
         return this._data.id
     }
 
-    getData () {
+    getData() {
         return this._data
     }
 
@@ -28,7 +28,7 @@ export default class Note {
     getText() {
         return this._data.text
     }
-    setText(text){
+    setText(text) {
         this._data.text = text
     }
     setTitle(title) {

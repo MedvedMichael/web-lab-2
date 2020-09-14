@@ -1,5 +1,4 @@
 
-const Url = require('url-parse')
 const parseQuery = (query) => {
     const queryStrings = query.slice(1).split('&')
     const queryItems = {}

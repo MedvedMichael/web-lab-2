@@ -3,7 +3,7 @@ const templateEngine = (text, data) => {
     const regForJSCode = /(^( )?(var|const|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
 
 
-    let code = 'let collector = [];\nconsole.log(name);\n',
+    let code = 'let collector = [];\n',
         currentPosition = 0, match = '';
 
     const value = [], name = []
@@ -13,7 +13,6 @@ const templateEngine = (text, data) => {
             value.push(data[k]);
         }
     }
-
 
     const add = (line, isJS) => {
         isJS ? (code += line.match(regForJSCode) ? `${line}\n` : `collector.push(${line});\n`) :
@@ -28,9 +27,7 @@ const templateEngine = (text, data) => {
 
     
     add(text.substr(currentPosition, text.length - currentPosition));
-    code += 'return collector.join("");';
-
-    // console.log(code)
+    code += 'return collector.join("");'
     
     return new Function(name, code.replace(/[\r\t\n]/g, '')).apply(this, value);
 }

@@ -4,44 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Notes</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/styles.css"/>
 </head>
 
 <body>
-    <script type="text/html" id="preview-tpl">
-        <ul class="list-group">
-            <#for(let i in notes){#>
-                <#const note = notes[i];#>
-                <li class="list-group-item preview-list-item <#(note.isSelected()) ? 'selected-item' : ''#>" >
-                    <h2 id="note-title_<#note.getID()#>">
-                        <#note.getTitle().slice(0,15)#>
-                        <#(note.getTitle().length < 15) ? '' : '...'#>
-                    </h2>
-                    <h4 id="note-text_<#note.getID()#>">
-                        <#note.getText().slice(0,17)#>
-                        <#(note.getText().length < 17) ? '' : '...'#>
-                    </h4>
-                    
-                </li>
-            <#}#>
-            <li id="add-note-button" class="list-group-item preview-list-item">
-                <h2>
-                    Add note
-                </h2>
-            </li>
-        </ul>
-    </script>
-
-    <div id="preview-list">
-
-    </div>
-    
     <div class="header flex">
-        <h1 class="display-3 header-title">
-            Simple Notes
-        </h1>
+        <a class="header-title" href="/">
+            <h1 class="display-3">
+                Simple Notes
+            </h1>
+        </a>
     </div>
     <div class="main">
         <div id="main-list">
