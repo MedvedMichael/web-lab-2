@@ -1,12 +1,10 @@
-
-const reg = /<#([^%>]+)?#>/g
-      regForJSCode = /(^( )?(var|const|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
-
-
-
 const templateEngine = (text, data) => {
-    let code = 'let collector = [];\nconsole.log(name);\n'
-    currentPosition = 0, match = '';
+    const reg = /<#([^%>]+)?#>/g
+    const regForJSCode = /(^( )?(var|const|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
+
+
+    let code = 'let collector = [];\nconsole.log(name);\n',
+        currentPosition = 0, match = '';
 
     const value = [], name = []
     if (typeof(data) === "object") {
@@ -37,4 +35,4 @@ const templateEngine = (text, data) => {
     return new Function(name, code.replace(/[\r\t\n]/g, '')).apply(this, value);
 }
 
-// module.exports = templateEngine
+export default templateEngine

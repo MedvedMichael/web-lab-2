@@ -14,20 +14,19 @@
         <ul class="list-group">
             <#for(let i in notes){#>
                 <#const note = notes[i];#>
-                <li class="list-group-item preview-list-item <#(selected!==-1 && i === selected.toString()) ? 'selected-item' : ''#>" 
-                    id="<#notes[i].id#>">
-                    <h2>
-                        <#note.title.slice(0,15)#>
-                        <#(note.title.length < 15) ? '' : '...'#>
+                <li class="list-group-item preview-list-item <#(note.isSelected()) ? 'selected-item' : ''#>" >
+                    <h2 id="note-title_<#note.getID()#>">
+                        <#note.getTitle().slice(0,15)#>
+                        <#(note.getTitle().length < 15) ? '' : '...'#>
                     </h2>
-                    <h4>
-                        <#note.text.slice(0,17)#>
-                        <#(note.text.length < 17) ? '' : '...'#>
+                    <h4 id="note-text_<#note.getID()#>">
+                        <#note.getText().slice(0,17)#>
+                        <#(note.getText().length < 17) ? '' : '...'#>
                     </h4>
                     
                 </li>
             <#}#>
-            <li class="list-group-item preview-list-item add-note-button" onclick="addNote()">
+            <li id="add-note-button" class="list-group-item preview-list-item">
                 <h2>
                     Add note
                 </h2>
@@ -53,9 +52,9 @@
             <textarea id="main-textarea" class="form-control main-textarea" rows="14" placeholder="Write something"></textarea>
         </div>
     </div>
-    <script src="src/js/template-engine.js"></script>
-    <script src="src/js/import-html.js"></script>
-    <script src="src/js/main.js"></script>
+    <!-- <script src="src/js/template-engine.js"></script> -->
+    <!-- <script src="src/js/main.js"></script> -->
+    <script src="./dist/js/bundle.js"></script>
 </body>
 
 </html>
