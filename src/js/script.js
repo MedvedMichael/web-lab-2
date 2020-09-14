@@ -80,7 +80,7 @@ const updatePage = (props) => {
         })
 
         textArea.addEventListener('change', () => { saveToLocalStorage('notes', notes) })
-        title.addEventListener('change', () => { saveToLocalStorage('notes', notes) })
+        titleArea.addEventListener('change', () => { saveToLocalStorage('notes', notes) })
     }
     else {
         textArea.disabled = true
