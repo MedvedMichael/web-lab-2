@@ -84,7 +84,7 @@ const updatePage = (props) => {
 }
 const handlerForInput = (element, preview) => {
     const {value} = element
-    preview.innerText = value.replace('\n',' ').slice(0, 15) + ((value.length > 15) ? ' ...' : '') + ((value.length === 0) ? 'Note' : '')
+    preview.innerText = value.replaceAll('\n',' ').slice(0, 15) + ((value.length > 15) ? ' ...' : '') + ((value.length === 0) ? 'Note' : '')
 }
 
 const handlerForTitleInput = (titleArea, notes) => {
