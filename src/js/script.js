@@ -60,25 +60,19 @@ const updatePage = (props) => {
 
     const textArea = document.getElementById('main-textarea'),
         titleArea = document.getElementById('title-input')
+
+    textArea.oninput = null
+    titleArea.oninput = null
     textArea.value = text
     titleArea.value = title
 
     if (currentNote) {
         textArea.disabled = false
         titleArea.disabled = false
-        titleArea.addEventListener('input', () => {
-            const { value } = titleArea
-            const previewTitle = document.getElementById(`note-title_${currentNote.getID()}`)
-            previewTitle.innerText = value.slice(0, 15) + ((value.length > 15) ? ' ...' : '') + ((value.length === 0) ? 'Note' : '')
-            currentNote.setTitle(value)
-        })
-        textArea.addEventListener('input', () => {
-            const { value } = textArea
-            const previewText = document.getElementById(`note-text_${currentNote.getID()}`)
-            previewText.innerText = value.slice(0, 17) + ((value.length > 17) ? ' ...' : '')
-            currentNote.setText(value)
-        })
-
+        
+        titleArea.addEventListener('input',() => handlerForTitleInput(titleArea, notes))
+        textArea.addEventListener('input', () => handlerForTextInput(textArea, notes))
+       
         textArea.addEventListener('change', () => { saveToLocalStorage('notes', notes) })
         titleArea.addEventListener('change', () => { saveToLocalStorage('notes', notes) })
     }
@@ -87,6 +81,22 @@ const updatePage = (props) => {
         titleArea.disabled = true
     }
 
+}
+const handlerForInput = (element, preview) => {
+    const {value} = element
+    preview.innerText = value.replace('\n',' ').slice(0, 15) + ((value.length > 15) ? ' ...' : '') + ((value.length === 0) ? 'Note' : '')
+}
+
+const handlerForTitleInput = (titleArea, notes) => {
+    const currentNote = notes.find(note => note.isSelected())
+    handlerForInput(titleArea, document.getElementById(`note-title_${currentNote.getID()}`))
+    currentNote.setTitle(titleArea.value)
+}
+
+const handlerForTextInput = (textArea, notes) => {
+    const currentNote = notes.find(note => note.isSelected())
+    handlerForInput(textArea, document.getElementById(`note-text_${currentNote.getID()}`))
+    currentNote.setText(textArea.value)
 }
 
 
