@@ -1,3 +1,20 @@
+const adaptHTML = (text) => text.replace(/[&"'\<\>]/g, (char) => {
+    switch (char) {
+        case '<':
+            return '&lt;'
+        case "'":
+            return '&#39;'
+        case '"':
+            return '&quot;'
+        case '&':
+            return '&amp;'
+
+        default:
+            return '&gt;'
+    }
+})
+  
+
 const templateEngine = (text, data) => {
     const reg = /<#([^%>]+)?#>/g
     const regForJSCode = /(^( )?(var|const|if|for|else|switch|case|break|{|}|;))(?:(?=\()|(?= )|$)/g
@@ -12,6 +29,8 @@ const templateEngine = (text, data) => {
             name.push(k)
             value.push(data[k]);
         }
+        name.push('adaptHTML')
+        value.push(adaptHTML)
     }
 
     const add = (line, isJS) => {

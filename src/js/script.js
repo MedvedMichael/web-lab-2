@@ -89,14 +89,18 @@ const handlerForInput = (element, preview) => {
 
 const handlerForTitleInput = (titleArea, notes) => {
     const currentNote = notes.find(note => note.isSelected())
-    handlerForInput(titleArea, document.getElementById(`note-title_${currentNote.getID()}`))
-    currentNote.setTitle(titleArea.value)
+    if (currentNote) {
+        handlerForInput(titleArea, document.getElementById(`note-title_${currentNote.getID()}`))
+        currentNote.setTitle(titleArea.value)
+    }
 }
 
 const handlerForTextInput = (textArea, notes) => {
     const currentNote = notes.find(note => note.isSelected())
-    handlerForInput(textArea, document.getElementById(`note-text_${currentNote.getID()}`))
-    currentNote.setText(textArea.value)
+    if (currentNote) {
+        handlerForInput(textArea, document.getElementById(`note-text_${currentNote.getID()}`))
+        currentNote.setText(textArea.value)
+    }
 }
 
 

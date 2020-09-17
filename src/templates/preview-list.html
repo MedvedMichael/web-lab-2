@@ -4,11 +4,11 @@
         <li class="d-flex list-group-item preview-list-item <#(note.isSelected()) ? 'selected-item' : ''#>" >
             <div>
                 <h2 id="note-title_<#note.getID()#>">
-                    <#note.getTitle().slice(0,15)#>
+                    <#adaptHTML(note.getTitle().slice(0,15))#>
                     <#(note.getTitle().length < 15) ? '' : '...' #>
                 </h2>
                 <h4 id="note-text_<#note.getID()#>">
-                    <#note.getText().slice(0,17)#>
+                    <#adaptHTML(note.getText().slice(0,17))#>
                     <#(note.getText().length < 17) ? '' : '...' #>
                 </h4>
             </div>
